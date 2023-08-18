@@ -1,10 +1,10 @@
 FRUIT=$1
 if [ $FRUIT == APPLE ];then
-	echo "You selected Apple!"
+	echo "You pick Apple!"
 elif [ $FRUIT == ORANGE ];then
-	echo "You selected Orange!"
+	echo "You pick Orange!"
 elif [ $FRUIT == GRAPE ];then
-	echo "You selected Grape!"
+	echo "You pick Grape!"
 else
-	echo "You selected other Fruit!"
+	echo "You pick other fruits!"
 fi
