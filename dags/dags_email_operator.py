@@ -9,7 +9,7 @@ with DAG(
     start_date=pendulum.datetime(2023, 8, 1, tz="US/Eastern"),
     catchup=False
 ) as dag:
-    send_email_task = EmailOperator(
+    sending_email_task = EmailOperator(
         task_id='sending_email_task',
         to='jyoon2286@gmail.com',
         subject='Testing Airflow email operator',
