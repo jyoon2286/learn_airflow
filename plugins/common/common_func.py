@@ -6,3 +6,14 @@ def register(name, sex, *args):
     print(f'SeX: {sex}')
     print(f'other information: {args}')
 
+def register2(name, sex, *args, **kwargs):
+    print(f'Name: {name}')
+    print(f'SeX: {sex}')
+    print(f'other information: {args}')
+    email = kwargs['email'] or ''
+    phone = kwargs['phone'] or ''
+    if email:
+        print(email)   
+    if phone:
+        print(phone)
+
