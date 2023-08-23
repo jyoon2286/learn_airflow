@@ -14,7 +14,7 @@ with DAG(
     bash_t1 =  BashOperator(
         task_id = 'bash_t1',
         env={'START_DATE': '{{ data_interval_start.in_timezone("US/Eastern") | ds }}',
-             'END_DATE': '{{ (data_interval_end.in_timezone("US/Eastern") - macro.dateutil.relativedelta.relativedelta(days=1)) | ds}} '
+             'END_DATE': '{{ (data_interval_end.in_timezone("US/Eastern") - macros.dateutil.relativedelta.relativedelta(days=1)) | ds}} '
              },
         bash_command= 'echo "START_DATE: $START_DATE" && echo "END_DATE: $END_DATE "'
     )
