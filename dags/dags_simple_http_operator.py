@@ -17,10 +17,6 @@ with DAG(
         http_conn_id='data.gov',
         endpoint='/ed/collegescorecard/v1/schools?api_key={{var.value.apikey_data_gov}}',
         method='GET',
-        headers={'Content-Type': 'application/json',
-                        'charset': 'utf-8',
-                        'Accept': '*/*'
-                        }
     )
 
     @task(task_id='python_2')
