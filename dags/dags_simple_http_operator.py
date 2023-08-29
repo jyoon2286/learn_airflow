@@ -11,7 +11,7 @@ with DAG(
     schedule=None
 ) as dag:
     
-    '''서울시 공공자전거 대여소 정보'''
+    '''College Score Information'''
     college_score_info = SimpleHttpOperator(
         task_id='college_score_info',
         http_conn_id='data.gov',
