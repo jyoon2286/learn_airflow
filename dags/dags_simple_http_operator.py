@@ -16,7 +16,7 @@ with DAG(
     college_score_info = SimpleHttpOperator(
         task_id='college_score_info',
         http_conn_id='data.gov',
-        endpoint='/ed/collegescorecard/v1/schools?api_key={{var.value.apikey_data_gov}}',
+        endpoint='/api/alt-fuel-stations/v1.json?limit=1&api_key={{var.value.apikey_data_gov}}',
         method='GET',
         response_filter=lambda response: json.loads(response.text),
         log_response=True
