@@ -13,23 +13,19 @@ with DAG(
 ) as dag:
     
     '''College Score Information'''
-    college_score_info = SimpleHttpOperator(
-        task_id='college_score_info',
+    fuel_stations = SimpleHttpOperator(
+        task_id='fuel_stations',
         http_conn_id='data.gov',
         endpoint='/api/alt-fuel-stations/v1.json?limit=1&api_key={{var.value.apikey_data_gov}}',
-        method='GET',
-        response_filter=lambda response: json.loads(response.text),
-        log_response=True
+        method='GET'
     )
 
     @task(task_id='python_2')
     def python_2(**kwargs):
         ti = kwargs['ti']
-        rslt = ti.xcom_pull(task_ids='college_score_info')
+        rslt = ti.xcom_pull(task_ids='fuel_stations')
         import json
-        from pprint import pprint
-        json_data = json.loads(rslt)
-        
+        from pprint import pprint       
         pprint(json.loads(rslt))
         
-    college_score_info >> python_2()
+    fuel_stations >> python_2()
