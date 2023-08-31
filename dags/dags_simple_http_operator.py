@@ -3,6 +3,7 @@ from airflow.operators.bash import BashOperator
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.decorators import task
 import pendulum
+import json
 
 with DAG(
     dag_id='dags_simple_http_operator',
@@ -17,6 +18,8 @@ with DAG(
         http_conn_id='data.gov',
         endpoint='/ed/collegescorecard/v1/schools?api_key={{var.value.apikey_data_gov}}',
         method='GET',
+        response_filter=lambda response: json.loads(response.text),
+        log_response=True
     )
 
     @task(task_id='python_2')
