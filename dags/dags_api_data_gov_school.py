@@ -12,11 +12,9 @@ with DAG(
     '''College school information'''
     tb_school_info = DatagovApiToCsvOperator(
         task_id='tb_school_info',
-        dataset_nm='CollegeSchoolInfo',
+        dataset_nm='/ed/collegescorecard/v1/schools?api_key=',
         path='/opt/airflow/files/CollegeSchoolInfo/{{data_interval_end.in_timezone("US/Eastern") | ds_nodash }}',
         file_name='CollegeSchoolInfo.csv'
     )
       
-   
-  
 tb_school_info
