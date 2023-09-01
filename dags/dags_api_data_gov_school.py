@@ -3,7 +3,7 @@ from airflow import DAG
 import pendulum
 
 with DAG(
-    dag_id='dags_seoul_api_corona',
+    dag_id='dags_api_dat_gov_school',
     schedule='0 7 * * *',
     start_date=pendulum.datetime(2023, 8, 1, tz="US/Eastern"),
     catchup=False
