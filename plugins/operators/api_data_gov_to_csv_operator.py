@@ -27,15 +27,10 @@ class DatagovApiToCsvOperator(BaseOperator):
         import requests
         import json 
 
-        headers = {'Content-Type': 'application/json',
-                   'charset': 'utf-8',
-                   'Accept': '*/*'
-                   }
-
         request_url = f'{base_url}'
         if self.base_dt is not None:
             request_url = f'{base_url}/{self.base_dt}'
-        response = requests.get(request_url, headers)
+        response = requests.get(request_url)
         contents = json.loads(response.text)
 
         emp_dict={}
