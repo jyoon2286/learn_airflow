@@ -21,7 +21,7 @@ class DatagovApiToCsvOperator(BaseOperator):
         school_df = self._call_api(self.base_url)
         if not os.path.exists(self.path):
             os.system(f'mkdir -p {self.path}')
-        school_df.to_csv(self.path + '/' + self.file_name, encoding='utf-8', index=False)
+        school_df.to_csv(self.path + '/' + self.file_name, index=False)
 
     def _call_api(self, base_url):
         import requests
