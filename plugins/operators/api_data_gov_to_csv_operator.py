@@ -21,11 +21,12 @@ class DatagovApiToCsvOperator(BaseOperator):
         school_df = self._call_api(self.base_url)
         if not os.path.exists(self.path):
             os.system(f'mkdir -p {self.path}')
-        school_df.to_csv(self.path + '/' + self.file_name, index=False)
+        school_df.to_csv(self.path + '/' + self.file_name, index=True)
 
     def _call_api(self, base_url):
         import requests
         import json 
+        from pprint import pprint
 
         request_url = f'{base_url}'
         if self.base_dt is not None:
@@ -38,6 +39,7 @@ class DatagovApiToCsvOperator(BaseOperator):
             school_name = contents["results"][result]["school"]["name"]
             emp_dict[school_name] = contents["results"][result]["school"]
         school_df = pd.DataFrame.from_dict(emp_dict, orient='index')
+        pprint(school_df)
     
 
         return school_df
