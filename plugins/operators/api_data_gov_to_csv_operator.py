@@ -2,7 +2,7 @@ from airflow.models.baseoperator import BaseOperator
 from airflow.hooks.base import BaseHook
 import pandas as pd 
 
-class DatagovApiToCsvOperator(BaseOperator):
+class DatagovApitoCsvOperator(BaseOperator):
     template_fields = ('endpoint', 'path','file_name','base_dt')
 
     def __init__(self, dataset_nm, path, file_name, base_dt=None, **kwargs):
@@ -19,8 +19,9 @@ class DatagovApiToCsvOperator(BaseOperator):
         connection = BaseHook.get_connection(self.http_conn_id)
         self.base_url = f'http://{connection.host}/{self.endpoint}'
         school_df = self._call_api(self.base_url)
-        # if not os.path.exists(self.path):
-        #     os.system(f'mkdir -p {self.path}')
+        print(self.path)
+        if not os.path.exists(self.path):
+            os.system(f'mkdir -p {self.path}')
         school_df.to_csv(self.path + '/' + self.file_name, index=True)
 
     def _call_api(self, base_url):
