@@ -10,6 +10,9 @@ with DAG(
     catchup=False
 ) as dag:
 
+
+
+
     sensor_task_by_poke = BashSensor(
         task_id='sensor_task_by_poke',
         env={'FILE':'/opt/airflow/files/CollegeSchoolInfo/{{data_interval_end.in_timezone("US/Eastern") | ds_nodash}}/CollegeSchoolInfo.csv'},
