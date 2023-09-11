@@ -30,7 +30,7 @@ class CustomPostgresHook(BaseHook):
 
         for col in file_df.columns:                             
             try:
-                # string 문자열이 아닐 경우 continue
+                # when string is other than the letter then continue
                 file_df[col] = file_df[col].str.replace('\r\n','')      
                 self.log.info(f'{table_name}.{col}: removing escape letters ')
             except:
